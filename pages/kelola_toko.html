@@ -1,0 +1,152 @@
+<template>
+<div class="page">
+    <div class="navbar no-shadow" style="height: 55px;">
+        <div class="navbar-bg" style="background: url('img/header.png') fixed"></div>
+        <div class="navbar-inner">
+            <div class="title sliding" style="color: white">Kelola Toko</div>
+        </div>
+    </div>
+
+    <div class="page-content">
+        <div style="background: url('img/above.png'); margin-top: -1px; height: 211px;"><br><br><br><br><br><br><br><br><br><br></div>
+        <div class="card" style="margin-bottom: 10px; border-radius: 20px; margin-top: -217px;">
+            <form class="list" style="margin-top: 10px;">          
+                <div class="item-content item-input">
+                    <div class="col-15" style="margin-top: 5px;">
+                        <div class="item-media">
+                            <i class="icon f7-icons">qrcode</i>
+                        </div>
+                    </div>
+                    <div class="item-inner" style="margin-top: 5px;">
+                        <div class="item-title item-label">Kode Toko*</div>
+                        <div class="item-input-wrap">
+                            <input type="text" id="toko_txtkode" placeholder="ex: 6710162xxx" maxlength="50" readonly>
+                        </div>
+                    </div>
+                </div>
+                <div class="item-content item-input">
+                    <div class="col-15" style="margin-top: 5px;">
+                        <div class="item-media">
+                            <i class="icon f7-icons">doc_plaintext</i>
+                        </div>
+                    </div>
+                    <div class="item-inner" style="margin-top: 5px;">
+                        <div class="item-title item-label">Nama Toko*</div>
+                        <div class="item-input-wrap">
+                            <input type="text" id="toko_txtnama" placeholder="ex: Toko Rahmad" maxlength="100">
+                        </div>
+                    </div>
+                </div>
+                <div class="item-content item-input">
+                    <div class="col-15" style="margin-top: 5px;">
+                        <div class="item-media">
+                            <i class="icon f7-icons">doc_plaintext</i>
+                        </div>
+                    </div>
+                    <div class="item-inner" style="margin-top: 5px;">
+                        <div class="item-title item-label">Alamat</div>
+                        <div class="item-input-wrap">
+                            <input type="text" id="toko_txtalamat" placeholder="Jl. A. Yani No 33" maxlength="100">
+                        </div>
+                    </div>
+                </div>
+                <div class="item-content item-input">
+                    <div class="col-15" style="margin-top: 5px;">
+                        <div class="item-media">
+                            <i class="icon f7-icons">phone</i>
+                        </div>
+                    </div>
+                    <div class="item-inner" style="margin-top: 5px;">
+                        <div class="item-title item-label">No Telp</div>
+                        <div class="item-input-wrap">
+                            <input type="number" id="toko_txttelp" placeholder="ex: 08564213xxxx" maxlength="20">
+                        </div>
+                    </div>
+                </div>
+                <div class="block" style="margin-top: 10px">
+                    <p class="row">
+                        <button type="button" class="col button button-fill" id="toko_btnkembali" @click="kembali">Kembali</button>
+                        <button type="button" class="col button button-fill color-green" @click="updatetoko">Update</button>
+                        <button type="button" class="col button button-fill color-red" @click="hapustoko">Hapus</button>
+                    </p>
+                </div>
+            </form><br>
+        </div>
+    </div>
+</div>
+</template>
+
+<script>
+    return{
+        on: {
+            pageInit: function(){
+                db.transaction(function(tx){
+                    tx.executeSql("SELECT * FROM toko", [], 
+                        function(tx, results){
+                            jmldata = results.rows.length;
+                            if(jmldata == 0){
+                                $("#toko_btnkembali").click();
+                                konfigurasidb();
+                                return;
+                            }else{
+                                for(i=0; i<jmldata; i++){
+                                    var kode = results.rows.item(i).kode_toko;
+                                    var nama = results.rows.item(i).nama_toko;
+                                    var alamat = results.rows.item(i).alamat;
+                                    var telp = results.rows.item(i).no_telp;
+                                    $("#toko_txtkode").val(kode);
+                                    $("#toko_txtnama").val(nama);
+                                    $("#toko_txtalamat").val(alamat);
+                                    $("#toko_txttelp").val(telp);
+                                }
+                            }
+                        }
+                    );
+                });
+            }
+        },
+        methods: {
+            updatetoko: function(){
+                var kode = $("#toko_txtkode").val();
+                var nama = $("#toko_txtnama").val();
+                var alamat = $("#toko_txtalamat").val();
+                var telp = $("#toko_txttelp").val();
+                if(kode == "" || nama == ""){
+                    app.dialog.alert("Ada isian yang Masih Kosong","Gagal");
+                    return;
+                }
+                db.transaction(function(tx){
+                    tx.executeSql("UPDATE toko SET nama_toko=?, alamat=?, no_telp=? WHERE kode_toko=?", [nama, alamat, telp, kode], 
+                        function(tx){
+                            app.dialog.alert("Data Toko Berhasil di Update","Berhasil");
+                            konfigurasidb();
+                        }
+                    );
+                });
+            },
+            hapustoko: function(){
+                var kode = $("#kelola_txtkode").val();
+                if(kode == ""){
+                    app.dialog.alert("Kode Toko Masih Kosong","Gagal");
+                    return;
+                }
+                app.dialog.confirm("Anda Yakin Ingin Menghapus Toko Ini ?","Hapus",
+                    function(){
+                        db.transaction(function(tx){
+                            tx.executeSql("DELETE FROM toko", [], 
+                                function(tx){
+                                    app.dialog.alert("Data Toko Berhasil di Hapus, Silahkan Registrasi Ulang","Berhasil");
+                                    app.views.main.router.back();
+                                }
+                            );
+                        });
+                    },
+                    function(){}
+                );
+            },
+            kembali: function(){
+                app.views.main.router.back();
+            }
+        }
+    }
+</script>

@@ -1,0 +1,57 @@
+<template>
+<div class="page">
+    <div class="navbar no-shadow" style="height: 55px;">
+        <div class="navbar-bg" style="background: url('img/header.png') fixed"></div>
+        <div class="navbar-inner">
+            <div class="title sliding" style="color: white">Daftar Akun</div>
+        </div>
+    </div>
+
+    <div class="page-content">
+        <div style="background: url('img/above.png'); margin-top: -1px; height: 211px;"><br><br><br><br><br><br><br><br><br><br></div>
+        <div class="card" style="margin-left: 15px; margin-right: 15px; margin-bottom: 10px; border-radius: 20px; margin-top: -217px">
+            <form class="list" style="margin-top: 10px;">                                
+                <div class="block" style="margin-top: 10px">
+                    <br><p class="row" style="margin-top: -5px;">
+                        <button type="button" class="col button button-fill color-red" @click="kembali">Kembali</button>
+                        <button type="button" class="col button button-fill color-green" @click="ketambahakun">Tambah</button>
+                    </p>
+                </div>
+            </form><br>
+        </div>
+        <div style="margin-top: -25px;">
+            <div class="block-title" style="color: white">Daftar Akun</div>
+            <div id="blokdataakun" class="list"></div><br><br><br><br><br><br><br><br>
+        </div>
+    </div>
+</div>
+</template>
+
+<script>
+    return{
+        on: {
+            pageAfterIn: function(e, page){
+                db.transaction(function(tx){
+                    tx.executeSql("SELECT * FROM akun ORDER BY nama_user", [], function(tx, results){
+                        jmldata = results.rows.length;
+                        var dt = "";
+                        for(i=0; i<jmldata; i++){
+                            var kode = results.rows.item(i).kode_akun;
+                            var nama = results.rows.item(i).nama_user;
+                            dt += '<li><a href="#" class="item-link item-content" data-kode="'+ kode +'" data-nama="'+ nama +'" onclick="kekelolaakun(this)"><div class="item-media"><i class="f7-icons">doc_plaintext</i></div><div class="item-inner"><div class="item-title">'+ nama +'</div><div class="item-after">'+ kode +'</div></div></a></li>';
+                        }
+                        $("#blokdataakun").html("<ul>" + dt + "</ul>");
+                    });
+                });
+            }
+        },
+        methods: {
+            ketambahakun: function(){
+                app.views.main.router.navigate("/tambah_akun/");
+            },
+            kembali: function(){
+                app.views.main.router.back();
+            }
+        }
+    }
+</script>

@@ -1,0 +1,92 @@
+<template>
+<div class="page">
+    <div class="navbar no-shadow" style="height: 55px;">
+        <div class="navbar-bg" style="background: url('img/header.png') fixed"></div>
+        <div class="navbar-inner">
+            <div class="title sliding" style="color: white">Kelola Akun</div>
+        </div>
+    </div>
+
+    <div class="page-content">
+        <div style="background: url('img/above.png'); margin-top: -1px; height: 211px;"><br><br><br><br><br><br><br><br><br><br></div>
+        <div class="card" style="margin-bottom: 10px; border-radius: 20px; margin-top: -217px;">
+            <form class="list" style="margin-top: 10px;">
+                <input type="hidden" id="kelolaakun_txtkode" readonly>
+                <div class="item-content item-input">
+                    <div class="col-15" style="margin-top: 5px;">
+                        <div class="item-media">
+                            <i class="icon f7-icons">doc_plaintext</i>
+                        </div>
+                    </div>
+                    <div class="item-inner" style="margin-top: 5px;">
+                        <div class="item-title item-label">Nama Akun*</div>
+                        <div class="item-input-wrap">
+                            <input type="text" id="kelolaakun_txtnama" placeholder="ex: Suherman" maxlength="50">
+                        </div>
+                    </div>
+                </div>
+                <div class="block" style="margin-top: 10px">
+                    <p class="row">
+                        <button type="button" class="col button button-fill" @click="kembali">Kembali</button>
+                        <button type="button" class="col button button-fill color-green" @click="updateini">Update</button>
+                        <button type="button" class="col button button-fill color-red" @click="hapusini">Hapus</button>
+                    </p>
+                </div>
+            </form><br>
+        </div>
+    </div>
+</div>
+</template>
+
+<script>
+    return{
+        on: {
+            pageInit: function(){
+                var dt = sessionStorage.akun_pilih.split("|");
+                $("#kelolaakun_txtkode").val(dt[0]);
+                $("#kelolaakun_txtnama").val(dt[1]);
+            }
+        },
+        methods: {
+            updateini: function(){
+                var kode = $("#kelolaakun_txtkode").val();
+                var nama = $("#kelolaakun_txtnama").val();
+                if(kode == "" || nama == ""){
+                    app.dialog.alert("Ada isian yang Masih Kosong","Gagal");
+                    return;
+                }
+                db.transaction(function(tx){
+                    tx.executeSql("UPDATE akun SET nama_user=? WHERE kode_akun=?", [nama, kode], 
+                        function(tx){
+                            app.dialog.alert("Data Akun Berhasil di Update","Berhasil");
+                            app.views.main.router.back();
+                        }
+                    );
+                });
+            },
+            hapusini: function(){
+                var kode = $("#kelolaakun_txtkode").val();
+                if(kode == ""){
+                    app.dialog.alert("Kode Akun Masih Kosong","Gagal");
+                    return;
+                }
+                app.dialog.confirm("Anda Yakin Ingin Menghapus Akun Ini ?","Hapus",
+                    function(){
+                        db.transaction(function(tx){
+                            tx.executeSql("DELETE FROM akun WHERE kode_akun=?", [kode], 
+                                function(tx){
+                                    app.dialog.alert("Data Akun Berhasil di Hapus","Berhasil");
+                                    app.views.main.router.back();
+                                }
+                            );
+                        });
+                    },
+                    function(){}
+                );
+            },
+            kembali: function(){
+                app.views.main.router.back();
+            }
+        }
+    }
+</script>

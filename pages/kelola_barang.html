@@ -1,0 +1,134 @@
+<template>
+<div class="page">
+    <div class="navbar no-shadow" style="height: 55px;">
+        <div class="navbar-bg" style="background: url('img/header.png') fixed"></div>
+        <div class="navbar-inner">
+            <div class="title sliding" style="color: white">Kelola Barang</div>
+        </div>
+    </div>
+
+    <div class="page-content">
+        <div style="background: url('img/above.png'); margin-top: -1px; height: 211px;"><br><br><br><br><br><br><br><br><br><br></div>
+        <div class="card" style="margin-bottom: 10px; border-radius: 20px; margin-top: -217px;">
+            <form class="list" style="margin-top: 10px;">          
+                <div class="item-content item-input">
+                    <div class="col-15" style="margin-top: 5px;">
+                        <div class="item-media">
+                            <i class="icon f7-icons">qrcode</i>
+                        </div>
+                    </div>
+                    <div class="item-inner" style="margin-top: 5px;">
+                        <div class="item-title item-label">Kode Barang*</div>
+                        <div class="item-input-wrap">
+                            <input type="text" id="kelola_txtkode" placeholder="ex: bg003" maxlength="50" readonly>
+                        </div>
+                    </div>
+                </div>
+                <div class="item-content item-input">
+                    <div class="col-15" style="margin-top: 5px;">
+                        <div class="item-media">
+                            <i class="icon f7-icons">doc_plaintext</i>
+                        </div>
+                    </div>
+                    <div class="item-inner" style="margin-top: 5px;">
+                        <div class="item-title item-label">Nama Barang*</div>
+                        <div class="item-input-wrap">
+                            <input type="text" id="kelola_txtnama" placeholder="ex: Sunsilk Hijab 350ml" maxlength="100">
+                        </div>
+                    </div>
+                </div>
+                <div class="item-content item-input">
+                    <div class="col-15" style="margin-top: 5px;">
+                        <div class="item-media">
+                            <i class="icon f7-icons">money_dollar</i>
+                        </div>
+                    </div>
+                    <div class="item-inner" style="margin-top: 5px;">
+                        <div class="item-title item-label">Harga*</div>
+                        <div class="item-input-wrap">
+                            <input type="number" id="kelola_txtharga" placeholder="ex: 7500" maxlength="10">
+                        </div>
+                    </div>
+                </div>
+                <div class="item-content item-input">
+                    <div class="col-15" style="margin-top: 5px;">
+                        <div class="item-media">
+                            <i class="icon f7-icons">barcode</i>
+                        </div>
+                    </div>
+                    <div class="item-inner" style="margin-top: 5px;">
+                        <div class="item-title item-label">Barcode*</div>
+                        <div class="item-input-wrap">
+                            <input type="number" id="kelola_txtbarcode" placeholder="ex: xxxxxxx" maxlength="50">
+                        </div>
+                    </div>
+                </div>
+                <div class="block" style="margin-top: 10px">
+                    <p class="row">
+                        <button type="button" class="col button button-fill" @click="kembali">Kembali</button>
+                        <button type="button" class="col button button-fill color-green" @click="updateini">Update</button>
+                        <button type="button" class="col button button-fill color-red" @click="hapusini">Hapus</button>
+                    </p>
+                </div>
+            </form><br>
+        </div>
+    </div>
+</div>
+</template>
+
+<script>
+    return{
+        on: {
+            pageInit: function(){
+                var dt = sessionStorage.barang_pilih.split("|");
+                $("#kelola_txtkode").val(dt[0]);
+                $("#kelola_txtnama").val(dt[1]);
+                $("#kelola_txtharga").val(dt[2]);
+                $("#kelola_txtbarcode").val(dt[3]);
+            }
+        },
+        methods: {
+            updateini: function(){
+                var kode = $("#kelola_txtkode").val();
+                var nama = $("#kelola_txtnama").val();
+                var harga = $("#kelola_txtharga").val();
+                var barcode = $("#kelola_txtbarcode").val();
+                if(kode == "" || nama == "" || harga == "" || barcode == ""){
+                    app.dialog.alert("Ada isian yang Masih Kosong","Gagal");
+                    return;
+                }
+                db.transaction(function(tx){
+                    tx.executeSql("UPDATE barang SET nama_barang=?, harga=?, barcode=? WHERE kode_barang=?", [nama, harga, barcode, kode], 
+                        function(tx){
+                            app.dialog.alert("Data Barang Berhasil di Update","Berhasil");
+                            app.views.main.router.back();
+                        }
+                    );
+                });
+            },
+            hapusini: function(){
+                var kode = $("#kelola_txtkode").val();
+                if(kode == ""){
+                    app.dialog.alert("Kode Barang Masih Kosong","Gagal");
+                    return;
+                }
+                app.dialog.confirm("Anda Yakin Ingin Menghapus Barang Ini ?","Hapus",
+                    function(){
+                        db.transaction(function(tx){
+                            tx.executeSql("DELETE FROM barang WHERE kode_barang=?", [kode], 
+                                function(tx){
+                                    app.dialog.alert("Data Barang Berhasil di Hapus","Berhasil");
+                                    app.views.main.router.back();
+                                }
+                            );
+                        });
+                    },
+                    function(){}
+                );
+            },
+            kembali: function(){
+                app.views.main.router.back();
+            }
+        }
+    }
+</script>

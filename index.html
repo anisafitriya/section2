@@ -1,0 +1,1348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#2196f3">
+    <title>Android Apps</title>
+    <link rel="stylesheet" href="core/css/framework7.bundle.min.css">
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="apple-touch-icon" href="img/f7-icon-square.png">
+    <link rel="icon" href="img/f7-icon.png">
+    <style>
+        .jedatombol {margin-right: 3%; margin-left: 3%;}
+        .marginkonten {margin-right: 10px; margin-left: 10px;}
+        .full {width: 100%;}
+        .besar-icon {width: 75%;}
+        .slidergambar {width: 100%; height: 250px;}
+        .icontengah {margin-bottom:3%; display:block; margin-left:auto; margin-right:auto; text-align:center; width:60%;}
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="view view-main view-init safe-areas" data-master-detail-breakpoint="800" data-url="/">
+            <div class="page page-home">
+                <div class="navbar no-shadow" style="height: 55px;">
+                    <div class="navbar-bg" style="background: url('img/header.png') fixed"></div>
+                    <div class="navbar-inner">
+                        <div class="title sliding" style="color: white">Android Apps</div>
+                    </div>
+                </div>
+
+                 <div class="fab fab-center-bottom fab-morph fab-extended" style="margin-bottom: 15px;">
+                    <a href="javascript:void(0)" id="btnfablogout" onclick="logout()"><i class="icon f7-icons">xmark</i></a>
+                </div>
+                
+                <div class="toolbar tabbar tabbar-labels toolbar-bottom no-shadow tabs-swipeable">
+                    <div class="toolbar-inner">
+                      <a href="#tab-beranda" class="tab-link">
+                        <i class="icon f7-icons">house_alt</i>
+                        <span class="tabbar-label">Beranda</span>
+                      </a>
+                      <a href="#tab-penjualan" class="tab-link">
+                        <i class="icon f7-icons">money_dollar</i>
+                        <span class="tabbar-label">Penjualan</span>
+                      </a>
+                      <a href="#" class="tab-link">
+                        <i class="icon f7-icons"></i><span class="tabbar-label">Logout</span>
+                      </a>
+                      <a href="#tab-transaksi" class="tab-link">
+                        <i class="icon f7-icons">doc_text_search</i>
+                        <span class="tabbar-label">Transaksi</span>
+                      </a>
+                      <a href="#tab-menu" class="tab-link">
+                        <i class="icon f7-icons">menu</i>
+                        <span class="tabbar-label">Menu</span>
+                      </a>
+                    </div>
+                </div>
+
+                <div class="tabs">
+                    <div id="tab-beranda" class="page-content tab tab-active">
+                        <div style="background: url('img/above.png'); margin-top: -1px; height: 211px;"><br><br><br><br><br><br><br><br><br><br></div>
+                        <h2 style="margin-top: -217px; margin-bottom: 20px; text-align: left; color: white; margin-left: 15px">
+                            E-Pos Mobile System
+                        </h2>
+                        <div class="card" style="margin-left: 15px; margin-right: 15px; margin-bottom: 10px; border-radius: 20px;">
+                            <div class="card-content card-content-padding">
+                            	<div class="row" style="margin-bottom: 10px;">
+                                    <div class="col-20" style="text-align: center;">
+                                        <img src="img/calendar.png" style="width: 90%;">
+                                    </div>
+                                    <div class="col-80" style="font-size: 14px; text-align: justify">
+                                        <font style="font-size: 20px;" id="infotanggal"></font>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-bottom: 10px;">
+                                    <div class="col-20" style="text-align: center;">
+                                        <img src="img/shop.png" style="width: 90%;">
+                                    </div>
+                                    <div class="col-80" style="font-size: 14px; text-align: justify">
+                                        <font style="font-size: 16px;">Nama Toko</font><br>
+                                        <font style="font-size: 20px;" id="infotoko"></font>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-bottom: 10px;">
+                                    <div class="col-20" style="text-align: center;">
+                                        <img src="img/tools.png" style="width: 90%;">
+                                    </div>
+                                    <div class="col-80" style="font-size: 14px; text-align: justify">
+                                        <font style="font-size: 16px;">Default Printer</font><br>
+                                        <font style="font-size: 20px;" id="infoprinter"></font>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-20" style="text-align: center;">
+                                        <img src="img/profile.png" style="width: 90%;">
+                                    </div>
+                                    <div class="col-80" style="font-size: 14px; text-align: justify">
+                                        <font style="font-size: 16px;">Akun</font><br>
+                                        <font style="font-size: 20px;" id="infoakun"></font>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card" style="margin-left: 15px; margin-right: 15px; margin-bottom: 10px; border-radius: 20px;">
+                            <div class="card-content card-content-padding">
+                                <div class="row" style="margin-bottom: 10px;">
+                                    <div class="col-20" style="text-align: center;">
+                                        <img src="img/ribbon.png" style="width: 90%;">
+                                    </div>
+                                    <div class="col-80" style="font-size: 14px; text-align: justify">
+                                        <font style="font-size: 16px;">Jumlah Transaksi Hari Ini</font><br>
+                                        <font style="font-size: 20px;" id="infotransaksi"></font>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-bottom: 10px;">
+                                    <div class="col-20" style="text-align: center;">
+                                        <img src="img/ribbon.png" style="width: 90%;">
+                                    </div>
+                                    <div class="col-80" style="font-size: 14px; text-align: justify">
+                                        <font style="font-size: 16px;">Barang Terjual Hari Ini</font><br>
+                                        <font style="font-size: 20px;" id="infobarang"></font>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-20" style="text-align: center;">
+                                        <img src="img/ribbon.png" style="width: 90%;">
+                                    </div>
+                                    <div class="col-80" style="font-size: 14px; text-align: justify">
+                                        <font style="font-size: 16px;">Nominal Terjual Hari Ini</font><br>
+                                        <font style="font-size: 20px;" id="infonominal"></font>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="tab-penjualan" class="page-content tab">
+                        <div style="background: url('img/above.png'); margin-top: -1px; height: 211px;"><br><br><br><br><br><br><br><br><br><br></div>
+                        <h2 style="margin-top: -217px; margin-bottom: 20px; text-align: left; color: white; margin-left: 15px">Penjualan</h2>
+                        <div class="card" style="margin-bottom: 10px; margin-left: 15px; margin-right: 15px; border-radius: 20px;">
+				            <form class="list" style="margin-top: 10px;">
+				                <input type="hidden" id="keranjang_txtkode" placeholder="ex: bg003" maxlength="50">
+				                <div class="item-content item-input">
+				                    <div class="col-15" style="margin-top: 5px;">
+				                        <div class="item-media">
+				                            <i class="icon f7-icons">doc_plaintext</i>
+				                        </div>
+				                    </div>
+				                    <div class="item-inner" style="margin-top: 5px;">
+				                        <div class="item-title item-label">Nama Barang*</div>
+				                        <div class="item-input-wrap">
+				                            <input type="text" id="keranjang_txtnama" placeholder="Keyword Barang" maxlength="100">
+				                        </div>
+				                    </div>
+				                    <div class="col-10">
+					                    <div class="item-inner">
+					                        <div class="item-title item-label">&nbsp</div>
+					                        <div class="item-input-wrap">
+					                            <button type="button" class="button button-fill color-blue" onclick="get_barang()"><i class="icon f7-icons">search</i></button>
+					                        </div>
+					                    </div>
+					                </div>
+				                </div>
+				                <div class="row">
+					                <div class="item-content item-input col">
+					                    <div class="col-15" style="margin-top: 5px;">
+					                        <div class="item-media">
+					                            <i class="icon f7-icons">money_dollar</i>
+					                        </div>
+					                    </div>
+					                    <div class="item-inner" style="margin-top: 5px;">
+					                        <div class="item-title item-label">Harga*</div>
+					                        <div class="item-input-wrap">
+					                            <input type="number" id="keranjang_txtharga" placeholder="ex: 7500" maxlength="10">
+					                        </div>
+					                    </div>
+					                </div>
+					                <div class="item-content item-input col">
+					                    <div class="item-inner" style="margin-top: 5px;">
+					                        <div class="item-title item-label">Jumlah*</div>
+					                        <div class="item-input-wrap">
+					                            <input type="number" id="keranjang_txtjumlah" placeholder="ex: 4" step="0.1">
+					                        </div>
+					                    </div>
+					                </div>
+						        </div>
+				                <div class="block" style="margin-top: 10px">
+				                    <p class="row">
+				                    	<button type="button" class="col button button-fill color-green" onclick="updatekeranjang()">Tambah</button>
+				                    	<button type="button" class="col button button-fill color-red" id="btnrefreshformkeranjang" onclick="kosongformkeranjang()">Batal</button>
+				                    </p>
+				                    <p class="row">
+				                    	<button type="button" class="col button button-fill color-red" id="btnresetkeranjang" onclick="kosongkeranjang()">Baru</button>
+				                        <button type="button" class="col button button-fill" onclick="get_toko()">Cetak</button>
+				                    </p>
+				                </div>
+				            </form><br>
+				        </div>
+				        <div style="margin-top: 10px;" id="bloklistkeranjang"></div>
+                    </div>
+
+                    <div id="tab-transaksi" class="page-content tab">
+                        <div style="background: url('img/above.png'); margin-top: -1px; height: 211px;"><br><br><br><br><br><br><br><br><br><br></div>
+                        <h2 style="margin-top: -217px; margin-bottom: 20px; text-align: left; color: white; margin-left: 15px">Transaksi Hari Ini</h2>
+                        <div style="margin-top: 10px;" id="bloklisttransaksihariini"></div>
+                    </div>
+
+                    <div id="tab-menu" class="page-content tab">
+                        <div style="background: url('img/above.png'); margin-top: -1px; height: 211px;"><br><br><br><br><br><br><br><br><br><br></div>
+                        <h2 style="margin-top: -217px; margin-bottom: 20px; text-align: left; color: white; margin-left: 15px">
+                            Menu Aplikasi
+                        </h2>
+                        <div class="card" style="margin-left: 15px; margin-right: 15px; margin-bottom: 10px; border-radius: 20px;">
+                            <div class="card-content card-content-padding">
+                            	<p class="row" style="margin-bottom: 15px;">
+                                    <a href="/barang/" class="col text-align-center" style="color: black">
+                                    	<img src="img/compose.png" class="besar-icon"><br>Kelola Barang
+                                    </a>
+                                    <a href="/kelola_toko/" class="col text-align-center" style="color: black">
+                                    	<img src="img/shop.png" class="besar-icon"><br>Kelola Toko
+                                    </a>
+                                    <a href="/akun/" class="col text-align-center" style="color: black">
+                                    	<img src="img/locked.png" class="besar-icon"><br>Kelola Akun
+                                    </a>
+                                </p>
+                                <p class="row" style="margin-bottom: 15px;">
+                                    <a href="#" class="col text-align-center" style="color: black" onclick="get_printer()">
+                                    	<img src="img/tools.png" class="besar-icon"><br>Kelola Printer
+                                    </a>
+                                    <a href="#" class="col text-align-center sheet-open" data-sheet="#sheet-data" style="color: black">
+                                        <img src="img/bookshelf.png" class="besar-icon"><br>Kelola Database
+                                    </a>
+                                    <a href="/gantipass/" class="col text-align-center" style="color: black">
+                                    	<img src="img/key.png" class="besar-icon"><br>Ganti Password
+                                    </a>
+                                </p>
+                                <p class="row" style="margin-bottom: 15px;">
+                                    <a href="/transaksi/" class="col text-align-center" style="color: black">
+                                    	<img src="img/clipboard.png" class="besar-icon"><br>Riwayat Transaksi
+                                    </a>
+                                    <a href="/versi/" class="col text-align-center" style="color: black">
+                                    	<img src="img/browser.png" class="besar-icon"><br>Versi Aplikasi
+                                    </a>
+                                    <a href="/tentang/" class="col text-align-center" style="color: black">
+                                    	<img src="img/smartphone.png" class="besar-icon"><br>Tentang Aplikasi
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="page-content">
+                	<div class="login-screen" id="hallogin">
+                        <div class="page">
+                            <div class="page-content login-screen-content" style="margin-top: 10px;">
+                                <div class="block">
+                                    <p style="text-align: center">
+                                        <img src="img/profile.png" style="width:30%; margin-left:auto; margin-right:auto; margin-bottom:3%; display:block">
+                                    </p>
+                                </div>
+                                <div class="login-screen-title">Login</div>
+                                <form>
+                                    <div class="list">
+                                        <ul>
+                                            <li class="item-content item-input">
+                                                <div class="item-inner">
+                                                    <div class="item-title item-label"></div>
+                                                    <div class="item-input-wrap">
+                                                        <input type="password" id="txtpin" style="height: 40px; font-size: 40px; text-align: center;" readonly maxlength="6">
+                                                        <span class="input-clear-button"></span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="block">
+                                        <p class="row">
+                                            <button type="button" class="col button button-large" style="font-size: 25px;" onclick="tekan('1')">1</button>
+                                            <button type="button" class="col button button-large" style="font-size: 25px;" onclick="tekan('2')">2</button>
+                                            <button type="button" class="col button button-large" style="font-size: 25px;" onclick="tekan('3')">3</button>
+                                        </p>
+                                        <p class="row">
+                                            <button type="button" class="col button button-large" style="font-size: 25px;" onclick="tekan('4')">4</button>
+                                            <button type="button" class="col button button-large" style="font-size: 25px;" onclick="tekan('5')">5</button>
+                                            <button type="button" class="col button button-large" style="font-size: 25px;" onclick="tekan('6')">6</button>
+                                        </p>
+                                        <p class="row">
+                                            <button type="button" class="col button button-large" style="font-size: 25px;" onclick="tekan('7')">7</button>
+                                            <button type="button" class="col button button-large" style="font-size: 25px;" onclick="tekan('8')">8</button>
+                                            <button type="button" class="col button button-large" style="font-size: 25px;" onclick="tekan('9')">9</button>
+                                        </p>
+                                        <p class="row">
+                                            <button type="button" class="col button button-large" style="font-size: 25px;" onclick="$('#txtpin').val('')"><i class="icon f7-icons">xmark</i></button>
+                                            <button type="button" class="col button button-large" style="font-size: 25px;" onclick="tekan('0')">0</button>
+                                            <button type="button" class="col button button-large" style="font-size: 25px;" onclick="cekakun()"><i class="icon f7-icons">checkmark</i></button>
+                                        </p>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="login-screen" id="halregistrasi">
+                        <div class="page">
+                            <div class="page-content login-screen-content" style="margin-top: 10px;">
+                                <div class="block">
+                                    <p style="text-align: center">
+                                        <img src="img/logo.png" style="width:50%; margin-left:auto; margin-right:auto; margin-bottom:3%; display:block">
+                                    </p>
+                                </div>
+                                <div class="login-screen-title">Registrasi</div>
+                                <form>
+                                    <div class="list">
+                                        <ul>
+                                            <li class="item-content item-input">
+                                                <div class="item-inner">
+                                                    <div class="item-title item-label"></div>
+                                                    <div class="item-input-wrap">
+                                                        <input type="text" id="txtregawal" style="height: 40px; font-size: 40px; text-align: center;" readonly maxlength="10">
+                                                        <span class="input-clear-button"></span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="block">
+                                        <p class="row">
+                                            <button type="button" class="col button button-large" style="font-size: 25px;" onclick="set('1')">1</button>
+                                            <button type="button" class="col button button-large" style="font-size: 25px;" onclick="set('2')">2</button>
+                                            <button type="button" class="col button button-large" style="font-size: 25px;" onclick="set('3')">3</button>
+                                        </p>
+                                        <p class="row">
+                                            <button type="button" class="col button button-large" style="font-size: 25px;" onclick="set('4')">4</button>
+                                            <button type="button" class="col button button-large" style="font-size: 25px;" onclick="set('5')">5</button>
+                                            <button type="button" class="col button button-large" style="font-size: 25px;" onclick="set('6')">6</button>
+                                        </p>
+                                        <p class="row">
+                                            <button type="button" class="col button button-large" style="font-size: 25px;" onclick="set('7')">7</button>
+                                            <button type="button" class="col button button-large" style="font-size: 25px;" onclick="set('8')">8</button>
+                                            <button type="button" class="col button button-large" style="font-size: 25px;" onclick="set('9')">9</button>
+                                        </p>
+                                        <p class="row">
+                                            <button type="button" class="col button button-large" style="font-size: 25px;" onclick="$('#txtregawal').val('')"><i class="icon f7-icons">xmark</i></button>
+                                            <button type="button" class="col button button-large" style="font-size: 25px;" onclick="set('0')">0</button>
+                                            <button type="button" class="col button button-large" style="font-size: 25px;" onclick="simpanreg()"><i class="icon f7-icons">checkmark</i></button>
+                                        </p>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="popup" id="popup-listbarang">
+			            <div class="page">
+			                <div class="navbar no-shadow" style="background: white; border-style: none; color: black">
+			                    <div class="navbar-inner">
+			                        <div class="title">Pilih Barang</div>
+			                        <div class="right">
+			                            <a href="#" class="link popup-close"><i class="icon f7-icons">xmark</i></a>
+			                        </div>
+			                    </div>
+			                </div>
+			                <form data-search-container=".search-list" data-search-in=".item-title" class="searchbar searchbar-init">
+		                        <div class="searchbar-inner">
+		                            <div class="searchbar-input-wrap">
+		                                <input type="search" placeholder="Cari Barang" id="listbarang_txtkeyword">
+		                                <i class="searchbar-icon"></i>
+		                                <span class="input-clear-button"></span>
+		                            </div>
+		                        </div>
+		                    </form>
+		                    <div class="list simple-list searchbar-not-found" style="margin-top: 110px;">
+		                        <ul><li>Tidak Ditemukan</li></ul>
+		                    </div>
+			                <div class="page-content list search-list searchbar-found" id="bloklistbarang"></div>
+			            </div>
+			        </div>
+			        <div class="popup" id="popup-listbluetooth">
+                        <div class="page">
+                            <div class="navbar no-shadow" style="background: white; border-style: none; color: black">
+                                <div class="navbar-inner">
+                                    <div class="title">Pilih Printer Bluetooth</div>
+                                    <div class="right">
+                                        <a href="#" class="link popup-close"><i class="icon f7-icons">xmark</i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="page-content" id="bloklistbluetooth"></div>
+                        </div>
+                    </div>
+                    <div class="sheet-modal demo-sheet-swipe-to-close" style="height:auto" id="sheet-data">
+                        <div class="sheet-modal-inner">
+                            <div class="swipe-handler"></div>
+                            <div class="page-content">
+                                <div class="block-title block-title-large">Kelola Database</div>
+                                <div id="blokopsidb" class="list">
+                                    <ul>
+                                        <li>
+                                            <a href="#" class="item-link item-content" data-jenis="bb" onclick="buatfile(this)"><div class="item-inner"><div class="item-title">Backup Barang</div></div></a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="item-link item-content" data-jenis="bt" onclick="buatfile(this)"><div class="item-inner"><div class="item-title">Backup Transaksi</div></div></a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="item-link item-content" data-jenis="kb" onclick="resetdb(this)"><div class="item-inner"><div class="item-title">Kosong Barang</div></div></a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="item-link item-content" data-jenis="kt" onclick="resetdb(this)"><div class="item-inner"><div class="item-title">Kosong Transaksi</div></div></a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="item-link item-content" data-jenis="rb" onclick="bacafile(this)"><div class="item-inner"><div class="item-title">Restore Barang</div></div></a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="item-link item-content" data-jenis="rt" onclick="bacafile(this)"><div class="item-inner"><div class="item-title">Restore Transaksi</div></div></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="core/js/framework7.bundle.min.js"></script>
+    <script src="js/routes.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/jquery.md5.min.js"></script>
+    <script src="js/highcharts.js"></script>
+    <script src="js/jquery.qrcode.js"></script>
+    <script src="js/qrcode.js"></script>
+    <script src="cordova.js"></script>
+    <script>
+    	var db;
+    	setInterval(function(){
+			$("#infotanggal").html(sekarang());
+		}, 1000);
+    	konfigurasidb();
+		function konfigurasidb(){
+			db = openDatabase("eposdb", "0.1", "Database ePOS Android WebSQL", 10*1024*1024);
+		    db.transaction(function(tx){
+		    	tx.executeSql("CREATE TABLE IF NOT EXISTS toko (kode_toko VARCHAR(10), nama_toko TEXT, alamat TEXT, no_telp VARCHAR(30), PRIMARY KEY(kode_toko))");
+		    	tx.executeSql("CREATE TABLE IF NOT EXISTS akun (kode_akun VARCHAR(50), nama_user TEXT, pin TEXT, PRIMARY KEY(kode_akun))");
+		    	tx.executeSql("CREATE TABLE IF NOT EXISTS barang (kode_barang VARCHAR(50), nama_barang TEXT, harga INT(8), barcode TEXT, PRIMARY KEY(kode_barang))");
+		    	tx.executeSql("CREATE TABLE IF NOT EXISTS transaksi (id_transaksi VARCHAR(50), kode_barang VARCHAR(50), nama_barang TEXT, harga INT(8), jumlah INT(5), user TEXT, tgl_transaksi DATETIME, PRIMARY KEY(id_transaksi))");
+		    	tx.executeSql("CREATE TABLE IF NOT EXISTS keranjang (kode_barang VARCHAR(50), harga INT(8), jumlah INT(8), urut INT(20), PRIMARY KEY(kode_barang))");
+		    	tx.executeSql("CREATE TABLE IF NOT EXISTS pengaturan (kode_pengaturan VARCHAR(10), isi TEXT, PRIMARY KEY(kode_pengaturan))");
+		    	tx.executeSql("INSERT INTO pengaturan VALUES('001','')");
+		    });
+
+	    	db.transaction(function(tx){
+				tx.executeSql("SELECT * FROM akun", [], 
+                    function(tx, results){
+                        jmldata = results.rows.length;
+                        if(jmldata == 0){
+                            db.transaction(function(tx){
+                            	var akun_awal = random_all();
+                            	var pass = $.MD5("123456");
+                            	var angka = Math.floor(Math.random() * 99) + 10;
+                                tx.executeSql("INSERT INTO akun VALUES(?,?,?)", [akun_awal, "Client" + angka, pass], function(tx){});
+                            });
+                        }
+                    }
+                );
+            });
+
+	    	db.transaction(function(tx){
+				tx.executeSql("SELECT * FROM toko", [], 
+                    function(tx, results){
+                        jmldata = results.rows.length;
+                        if(jmldata == 0){
+                        	app.loginScreen.open("#halregistrasi");
+                            return;
+                        }else{
+                        	for(i=0; i<jmldata; i++){
+		                        var nama = results.rows.item(i).nama_toko;
+		                        $("#infotoko").html(nama);
+		                    }
+                        	app.loginScreen.close("#halregistrasi");
+                        }
+                    }
+                );
+            });
+
+            db.transaction(function(tx){
+				tx.executeSql("SELECT * FROM pengaturan WHERE kode_pengaturan='001'", [], 
+                    function(tx, results){
+                        jmldata = results.rows.length;
+                        if(jmldata == 0){
+                        	konfigurasidb();
+                        }else{
+                        	for(i=0; i<jmldata; i++){
+		                        var nama = results.rows.item(i).isi;
+		                        var dt = nama.split("|");
+		                        $("#infoprinter").html(dt[0]);
+		                    }
+                        }
+                    }
+                );
+            });
+
+            if(sessionStorage.xXbRq661 == undefined){
+            	sessionStorage.setItem("xXbRq661","");
+            	app.loginScreen.open("#hallogin");
+            }else{
+            	if(sessionStorage.xXbRq661 == ""){
+            		app.loginScreen.open("#hallogin");
+            	}else{
+            		db.transaction(function(tx){
+	                	tx.executeSql("SELECT * FROM akun WHERE pin=?", [sessionStorage.xXbRq661], 
+		                    function(tx, results){
+		                        jmldata = results.rows.length;
+		                        if(jmldata == 0){
+		                            app.loginScreen.open("#hallogin");
+		                        }else{
+		                        	for(i=0; i<jmldata; i++){
+		                        		var kode = results.rows.item(i).kode_akun;
+				                        var nama = results.rows.item(i).nama_user;
+				                        sessionStorage.setItem("xXbRq662", nama);
+				                        sessionStorage.setItem("xXbRq663", kode);
+				                    }
+				                    $("#infoakun").html(sessionStorage.xXbRq662);
+		                        	app.loginScreen.close("#hallogin");
+		                        }
+		                    }
+		                );
+		            });
+	            }
+            }
+
+            cekkeranjang();
+            cektransaksihariini();
+            if(sessionStorage.xXbRq664 == undefined){sessionStorage.setItem("xXbRq664","");}
+            if(sessionStorage.xXbRq665 == undefined){sessionStorage.setItem("xXbRq665","");}
+            if(sessionStorage.xXbRq666 == undefined){sessionStorage.setItem("xXbRq666","");}
+            if(localStorage.vRahQrP == undefined){
+                window.resolveLocalFileSystemURL("file:///storage/emulated/0", function(dir){
+                    dir.getFile("log_epos.txt", {create:true}, function(fileEntry){
+                        fileEntry.createWriter(function(fileWriter){
+                            fileWriter.onwriteend = function(e) {
+                                localStorage.setItem("vRahQrP","");
+                            };
+                            var skr = tgl_sekarang(new Date());
+                            var blob = new Blob([skr], {type: 'text/plain'});
+                            fileWriter.write(blob);
+                        });
+                    });
+                });
+            }
+		}
+
+		function cekkeranjang(){
+			db.transaction(function(tx){
+                tx.executeSql("SELECT a.*, b.nama_barang FROM keranjang AS a LEFT JOIN barang AS b ON a.kode_barang = b.kode_barang ORDER BY a.urut", [], function(tx, results){
+                    jmldata = results.rows.length;
+                    var dt = "";
+                    var total = 0;
+                    for(i=0; i<jmldata; i++){
+                        var kode = results.rows.item(i).kode_barang;
+                        var nama = results.rows.item(i).nama_barang;
+                        var harga = results.rows.item(i).harga;
+                        var jumlah = results.rows.item(i).jumlah;
+                        var subtotal = harga * jumlah;
+                        total += subtotal;
+                        var no = i + 1;
+                        dt += '<div class="card card-outline" style="margin-left: 15px; margin-right: 15px; border-radius: 20px;"><div class="card-content card-content-padding"><div class="row"><div class="col-85"><font style="font-size: 20px;">'+ nama + '</font><br><font style="font-size: 16px;">@Rp. '+ format_ribuan(harga) +' x '+ format_ribuan(jumlah) +' = Rp. '+ format_ribuan(subtotal) +'</font></div><div class="col-15"><button type="button" class="button button-fill color-red" data-kode="'+ kode +'" onclick="hapusitem(this)"><font style="font-size: 20px; text-align: center">X</font></button></div></div></div></div>';
+                    }
+                    $("#bloklistkeranjang").html(dt + '<div class="card card-outline" style="margin-left: 15px; margin-right: 15px; border-radius: 20px;"><div class="card-content card-content-padding"><div class="row"><div class="col"><font style="font-size: 25px;">Total: Rp. '+ format_ribuan(total) +'</font></div></div></div></div>');
+                });
+            });
+		}
+
+        function hapusitem(el){
+            app.dialog.confirm("Anda Yakin Ingin Menghapus Item ini ?","Hapus",
+                function(){
+                    var kode = $(el).data("kode");
+                    db.transaction(function(tx){
+                        tx.executeSql("DELETE FROM keranjang WHERE kode_barang = '"+ kode +"'");
+                    });
+                    cekkeranjang();
+                },
+                function(){}
+            );
+        }
+
+		function cektransaksi(){
+			var tgl = tgl_sekarang2(new Date());
+			db.transaction(function(tx){
+				tx.executeSql("SELECT * FROM transaksi WHERE tgl_transaksi LIKE '%"+ tgl +"%' GROUP BY SUBSTR(id_transaksi, 1, 13)", [], 
+                    function(tx, results){
+                        jmldata = results.rows.length;
+                        $("#infotransaksi").html(format_ribuan(jmldata));
+                    }
+                );
+            });
+		}
+
+		function cekbarang(){
+			var tgl = tgl_sekarang2(new Date());
+			db.transaction(function(tx){
+				tx.executeSql("SELECT SUM(jumlah) AS jumlah FROM transaksi WHERE tgl_transaksi LIKE '%"+ tgl +"%'", [], 
+                    function(tx, results){
+                        jmldata = results.rows.length;
+                        var jml;
+                        for(i=0; i<jmldata; i++){
+	                        jml = results.rows.item(i).jumlah;
+	                    }
+	                    if(jml == null){jml = 0;}
+                        $("#infobarang").html(format_ribuan(jml) + " Item");
+                    }
+                );
+            });
+		}
+
+		function ceknominal(){
+			var tgl = tgl_sekarang2(new Date());
+			db.transaction(function(tx){
+				tx.executeSql("SELECT SUM(jumlah * harga) AS total FROM transaksi WHERE tgl_transaksi LIKE '%"+ tgl +"%'", [], 
+                    function(tx, results){
+                        jmldata = results.rows.length;
+                        var jml;
+                        for(i=0; i<jmldata; i++){
+	                        jml = results.rows.item(i).total;
+	                    }
+	                    if(jml == null){jml = 0;}
+                        $("#infonominal").html("Rp. " + format_ribuan(jml));
+                    }
+                );
+            });
+		}
+
+		function cektransaksihariini(){
+			var tgl = tgl_sekarang2(new Date());
+			db.transaction(function(tx){
+                tx.executeSql("SELECT SUBSTR(id_transaksi, 1, 13) AS id_transaksi, SUM(harga * jumlah) AS total, user, tgl_transaksi FROM transaksi WHERE tgl_transaksi LIKE '%"+ tgl +"%' GROUP BY SUBSTR(id_transaksi, 1, 13) ORDER BY tgl_transaksi DESC", [], function(tx, results){
+                    jmldata = results.rows.length;
+                    var dt = "";
+                    for(i=0; i<jmldata; i++){
+                        var id = results.rows.item(i).id_transaksi;
+                        var total = results.rows.item(i).total;
+                        var kasir = results.rows.item(i).user;
+                        var tgl = results.rows.item(i).tgl_transaksi;
+                        var no = i + 1;
+                        dt += '<div class="card card-outline" style="margin-left: 15px; margin-right: 15px; border-radius: 20px;"><div class="card-content card-content-padding"><div class="row" style="margin-bottom: 10px;"><div class="col-10"><font style="font-size: 17px;">'+ no +'</font></div><div class="col-90"><font style="font-size: 17px;"><b>ID Transaksi: </b>'+ id + '</font><br><font style="font-size: 17px;"><b>Total: </b>Rp. '+ format_ribuan(total) +'</font><br><font style="font-size: 17px;"><b>Jam: </b>'+ tgl.substring(11) +' ('+ kasir +')</font></div></div><div class="row"><button type="button" data-id="'+ id +'" data-kasir="'+ kasir +'" data-tgl="'+ tgl_pendek(tgl.substring(0, 10)) +'" data-jam="'+ tgl.substring(11) +'" class="col button button-fill" onclick="cetakulangnota(this)">Cetak Ulang</button><button type="button" data-id="'+ id +'" data-kasir="'+ kasir +'" data-tgl="'+ tgl_pendek(tgl.substring(0, 10)) +'" data-jam="'+ tgl.substring(11) +'" class="col button button-fill color-red" onclick="detailnota(this)">Detail</button></div></div></div>';
+                    }
+                    $("#bloklisttransaksihariini").html(dt);
+                });
+            });
+            cektransaksi();
+            cekbarang();
+            ceknominal();
+		}
+
+		function cekakun(){
+			var dd = new Date();
+			var kode = $.MD5(String(dd.getFullYear()+dd.getMonth()+dd.getDate()+dd.getHours()));
+			var kode2 = kode.replace(/\D/g,'');
+			if($("#txtpin").val() == kode2.substring(0,6)){
+				app.loginScreen.close("#hallogin");
+				$("#txtpin").val("");
+			}else{
+				db.transaction(function(tx){
+					tx.executeSql("SELECT * FROM akun WHERE pin=?", [$.MD5($("#txtpin").val())], 
+		                function(tx, results){
+		                    jmldata = results.rows.length;
+		                    if(jmldata == 0){
+		                        app.dialog.alert("Login Gagal","Gagal");
+		                    }else{
+		                    	for(i=0; i<jmldata; i++){
+		                    		var kode = results.rows.item(i).kode_akun;
+			                        var nama = results.rows.item(i).nama_user;
+			                        sessionStorage.setItem("xXbRq662", nama);
+			                        sessionStorage.setItem("xXbRq663", kode);
+			                    }
+			                    sessionStorage.xXbRq661 = $.MD5($("#txtpin").val());
+			                    $("#txtpin").val("");
+			                    $("#infoakun").html(sessionStorage.xXbRq662);
+		                    	app.loginScreen.close("#hallogin");
+		                    }
+		                }
+		            );
+		        });
+		    }
+		}
+
+		function tekan(a){
+			var nilai = $("#txtpin").val();
+			if(nilai.length == 6){return;}
+			nilai += a;
+			$("#txtpin").val(nilai);
+		}
+
+		function set(a){
+			var nilai = $("#txtregawal").val();
+			if(nilai.length == 10){return;}
+			nilai += a;
+			$("#txtregawal").val(nilai);
+		}
+
+		function simpanreg(){
+			var kodereg = $("#txtregawal").val();
+			if(kodereg == ""){
+				app.dialog.alert("Kode Masih Kosong","Gagal");
+                return;
+			}
+			if(kodereg.length != 10){
+				app.dialog.alert("Kode Registrasi Harus 10 Digit","Gagal");
+                return;
+			}
+			db.transaction(function(tx){
+				tx.executeSql("DELETE FROM toko");
+				tx.executeSql("INSERT INTO toko VALUES(?,?,?,?)", [kodereg,"","",""], function(tx){});
+				app.dialog.alert("Registrasi Toko Berhasil, Silahkan Isi Detail Toko di Menu Kelola Toko","Berhasil");
+				konfigurasidb();
+            });
+		}
+
+		function logout(){
+			app.dialog.confirm("Anda Yakin Ingin Logout ?","Logout",
+                function(){
+                    sessionStorage.removeItem("xXbRq661");
+                    sessionStorage.removeItem("xXbRq662");
+                    sessionStorage.removeItem("xXbRq663");
+                    sessionStorage.removeItem("xXbRq664");
+                    sessionStorage.removeItem("xXbRq665");
+                    sessionStorage.removeItem("xXbRq666");
+                    sessionStorage.removeItem("barang_pilih");
+                    sessionStorage.removeItem("transaksi_pilih");
+                    konfigurasidb();
+                },
+                function(){}
+            );
+		}
+
+		function id_tgl_transaksi(){
+			if(sessionStorage.xXbRq664 == ""){
+				var dd = new Date();
+				var idtrans = dd.getTime();
+				var tgl_transaksi = tgl_sekarang(dd) + " / " + jam_sekarang(dd);
+				sessionStorage.xXbRq664 = idtrans;
+				sessionStorage.xXbRq665 = tgl_transaksi;
+				sessionStorage.xXbRq666 = tgl_sekarang2(dd) + " " + jam_sekarang(dd);
+			}
+		}
+
+		function kosongkeranjang(){
+			app.dialog.confirm("Anda Yakin Ingin Meng-kosongkan Keranjang ?","Kosong",
+                function(){
+                	var kasir;
+                	id_tgl_transaksi();
+					if($("#infoakun").html() == ""){
+						app.dialog.alert("Silahkan Login Terlebih Dahulu", "Gagal");
+						return;
+					}else{kasir = $("#infoakun").html();}
+
+                    db.transaction(function(tx){
+		                tx.executeSql("SELECT a.*, b.nama_barang FROM keranjang AS a LEFT JOIN barang AS b ON a.kode_barang = b.kode_barang ORDER BY a.urut", [], function(tx, results){
+		                    jmldata = results.rows.length;
+		                    if(jmldata > 0){
+		                    	db.transaction(function(tx2){
+				                    for(i=0; i<jmldata; i++){
+				                        var kode = results.rows.item(i).kode_barang;
+				                        var nama = results.rows.item(i).nama_barang;
+				                        var harga = results.rows.item(i).harga;
+				                        var jumlah = results.rows.item(i).jumlah;
+				                        var no = i + 1;
+				                        var no1;
+				                        if(no < 10){no1 = "0" + no;}
+				                        else{no1 = no;}
+				                        var id = sessionStorage.xXbRq664 + "-" + no1;
+							            tx2.executeSql("INSERT INTO transaksi VALUES(?,?,?,?,?,?,?)", [id, kode, nama, harga, jumlah, kasir, sessionStorage.xXbRq666]);
+				                    }
+				                });
+		                    }
+		                    db.transaction(function(tx3){
+			                	tx3.executeSql("DELETE FROM keranjang");
+			                	sessionStorage.xXbRq664 = "";
+		                    	sessionStorage.xXbRq665 = "";
+		                    	sessionStorage.xXbRq666 = "";
+			                	konfigurasidb();
+			                })
+		                });
+		            });
+                },
+                function(){}
+            );
+		}
+
+		function get_printer(){
+			window.DatecsPrinter.listBluetoothDevices(
+                function(devices){
+                	$("#bloklistbluetooth").html("");
+                    devices.forEach(tampilperangkatbluetooth);
+                    app.popup.open("#popup-listbluetooth");
+                },
+                function(error) {
+                    console.log(JSON.stringify(error));
+                }
+            );
+		}
+
+		function tampilperangkatbluetooth(value){
+            $("#bloklistbluetooth").append('<a href="#" data-nama="'+ value.name +'" data-mac="'+ value.address +'" onclick="pilihprinter(this)"><div class="card card-outline" style="margin-left: 15px; margin-right: 15px; border-radius: 20px;"><div class="card-content card-content-padding"><div class="row"><div class="col"><font style="font-size: 20px;">'+ value.name + '<br>'+ value.address +'</font></div></div></div></div></a>');
+        }
+
+        function pilihprinter(el){
+        	var nama = $(el).data("nama");
+            var mac = $(el).data("mac");
+            var isi = nama + "|" + mac;
+            if(mac == ""){
+				app.dialog.alert("Printer Tidak Terdeteksi","Gagal");
+                return;
+			}
+			db.transaction(function(tx){
+                tx.executeSql("UPDATE pengaturan SET isi=? WHERE kode_pengaturan='001'", [isi], 
+                    function(tx){
+    					app.dialog.alert("Pengaturan Printer Berhasil di Lakukan","Berhasil");
+    					konfigurasidb();
+    					app.popup.close();
+                    }
+                );
+            });
+        }
+
+		function kekelola(el){
+			var kode = $(el).data("kode");
+			var nama = $(el).data("nama");
+			var harga = $(el).data("harga");
+			var barcode = $(el).data("barcode");
+			sessionStorage.setItem("barang_pilih", kode + "|" + nama + "|" + harga + "|" + barcode);
+			app.views.main.router.navigate("/kelola_barang/");
+		}
+
+		function kekelolaakun(el){
+			var kode = $(el).data("kode");
+			var nama = $(el).data("nama");
+			sessionStorage.setItem("akun_pilih", kode + "|" + nama);
+			app.views.main.router.navigate("/kelola_akun/");
+		}
+
+		function get_barang(){
+            var keyword = $("#keranjang_txtnama").val();
+            if(keyword == ""){
+                app.dialog.alert("Keyword Tidak Boleh Kosong","Gagal");
+                return;
+            }
+			db.transaction(function(tx){
+                tx.executeSql("SELECT * FROM barang WHERE nama_barang LIKE '%"+ keyword +"%' ORDER BY nama_barang", [], function(tx, results){
+                    jmldata = results.rows.length;
+                    var dt = "";
+                    for(i=0; i<jmldata; i++){
+                        var kode = results.rows.item(i).kode_barang;
+                        var nama = results.rows.item(i).nama_barang;
+                        var harga = results.rows.item(i).harga;
+                        var barcode = results.rows.item(i).barcode;
+                        dt += '<li><a href="#" class="item-link item-content" data-kode="'+ kode +'" data-nama="'+ nama +'" data-harga="'+ harga +'" onclick="pilihbarang(this)"><div class="item-media"><i class="f7-icons">doc_plaintext</i></div><div class="item-inner"><div class="item-title">'+ nama +'</div><div class="item-after">'+ format_ribuan(harga) +'</div></div></a></li>';
+                    }
+                    $("#bloklistbarang").html("<ul>" + dt + "</ul><br><br><br>");
+                    app.popup.open("#popup-listbarang");
+                });
+            });
+		}
+
+		function pilihbarang(el){
+			var kode = $(el).data("kode");
+			var nama = $(el).data("nama");
+			var harga = $(el).data("harga");
+			$("#keranjang_txtkode").val(kode);
+			$("#keranjang_txtnama").val(nama);
+			$("#keranjang_txtharga").val(harga);
+			$("#keranjang_txtjumlah").val("");
+			app.popup.close();
+		}
+
+		function pilihjumlah(el){
+			var jumlah = $(el).data("jumlah");
+			$("#keranjang_txtjumlah").val(jumlah);
+			app.popup.close();
+		}
+
+		function kosongformkeranjang(){
+			$("#keranjang_txtkode").val("");
+			$("#keranjang_txtnama").val("");
+			$("#keranjang_txtharga").val("");
+			$("#keranjang_txtjumlah").val("");
+		}
+
+		function updatekeranjang(){
+			var kode = $("#keranjang_txtkode").val();
+			var harga = $("#keranjang_txtharga").val();
+			var jumlah = $("#keranjang_txtjumlah").val();
+
+			if(kode == "" || harga == "" || jumlah == ""){
+				app.dialog.alert("Ada isian yang Masih Kosong","Gagal");
+                return;
+			}
+
+			db.transaction(function(tx){
+                tx.executeSql("SELECT * FROM keranjang WHERE kode_barang = ? ", [kode], 
+                    function(tx, results){
+                        jmldata = results.rows.length;
+                        if(jmldata > 0){
+                            db.transaction(function(tx){
+                                tx.executeSql("UPDATE keranjang SET harga=?, jumlah=? WHERE kode_barang=?", [harga, jumlah, kode], 
+                                    function(tx){kosongformkeranjang();}
+                                );
+                            });
+                        }else{
+                            db.transaction(function(tx){
+                                var dd = new Date();
+                                var urut = dd.getTime();
+                                tx.executeSql("INSERT INTO keranjang VALUES(?,?,?,?)", [kode, harga, jumlah, urut], 
+                                    function(tx){kosongformkeranjang();}
+                                );
+                            });
+                        }
+                        cekkeranjang();
+                    }
+                );
+            });
+		}
+
+		function get_toko(){
+			if($("#infotoko").html() == ""){
+				app.dialog.alert("Profil Toko Masih Kosong, Isi Terlebih Dahulu", "Gagal");
+				return;
+			}else{
+				var namatoko, alamattoko, telptoko;
+				db.transaction(function(tx){
+					tx.executeSql("SELECT * FROM toko", [], 
+	                    function(tx, results){
+	                        jmldata = results.rows.length;
+	                        if(jmldata > 0){
+	                        	for(i=0; i<jmldata; i++){
+			                        namatoko = results.rows.item(i).nama_toko;
+			                        alamattoko = results.rows.item(i).alamat;
+			                        if(results.rows.item(i).no_telp != ""){
+			                        	telptoko = results.rows.item(i).no_telp;
+			                        }else{
+			                        	telptoko = "?????";
+			                        }
+			                    }
+			                    cetaknota(namatoko, alamattoko, telptoko);
+	                        }else{
+	                        	app.dialog.alert("Profil Toko Masih Kosong, Isi Terlebih Dahulu", "Gagal");
+								return;
+	                        }
+	                    }
+	                );
+	            });
+			}
+		}
+
+		function cetaknota(namatoko, alamattoko, telptoko){
+			var macprinter, kasir, isi;
+			if($("#infoprinter").html() == ""){
+				app.dialog.alert("Default Printer Masih Kosong, Isi Telebih Dahulu", "Gagal");
+				return;
+			}else{
+				db.transaction(function(tx){
+					tx.executeSql("SELECT * FROM pengaturan WHERE kode_pengaturan='001'", [], 
+	                    function(tx, results){
+	                        jmldata = results.rows.length;
+	                        var dtprinter;
+	                        for(i=0; i<jmldata; i++){dtprinter = results.rows.item(i).isi;}
+	                        if(dtprinter != ""){
+	                        	var hh = dtprinter.split("|");
+	                        	macprinter = hh[1];
+	                        }else{
+	                        	app.dialog.alert("Default Printer Masih Kosong, Isi Telebih Dahulu", "Gagal");
+								return;
+	                        }
+	                    }
+	                );
+	            });
+			}
+
+			if($("#infoakun").html() == ""){
+				app.dialog.alert("Silahkan Login Terlebih Dahulu", "Gagal");
+				return;
+			}else{kasir = $("#infoakun").html();}
+
+			id_tgl_transaksi()
+
+			isi = " {center}{h}" + namatoko + "{/h}\n" + alamattoko + ". Telp: "+ telptoko + "\n-------------------------------\n{left}No Transaksi: " + sessionStorage.xXbRq664 + "\nTanggal: " + sessionStorage.xXbRq665 + "\nKasir: " + kasir + "\n\n";
+
+			db.transaction(function(tx){
+                tx.executeSql("SELECT a.*, b.nama_barang FROM keranjang AS a LEFT JOIN barang AS b ON a.kode_barang = b.kode_barang ORDER BY a.urut", [], function(tx, results){
+                    jmldata = results.rows.length;
+                    if(jmldata > 0){
+	                    var total = 0;
+	                    for(i=0; i<jmldata; i++){
+	                        var kode = results.rows.item(i).kode_barang;
+	                        var nama = results.rows.item(i).nama_barang;
+	                        var harga = results.rows.item(i).harga;
+	                        var jumlah = results.rows.item(i).jumlah;
+	                        var subtotal = harga * jumlah;
+	                        total += subtotal;
+	                        var no = i + 1;
+	                        isi += no + '. ' + nama + '\n   Rp. ' + format_ribuan(harga) + ' x ' + format_ribuan(jumlah) + ' = Rp. ' + format_ribuan(subtotal) + '\n';
+	                    }
+	                    isi += '\n{h}{center}Total Belanja: Rp. ' + format_ribuan(total) + '{/h}\nTerimaksih Telah Belanja\n\n\n\n';
+	                    window.DatecsPrinter.connect(macprinter, 
+	        				function(){window.DatecsPrinter.printText(isi, "UTF-8");},
+	        				function(){console.log(JSON.stringify(error));}
+			            );
+			        }else{
+			        	app.dialog.alert("Keranjang Masih Kosong, Isi Terlebih Dahulu", "Gagal");
+						return;
+			        }
+                });
+            });
+		}
+
+		function cetakulangnota(el){
+			var idtransaksi = $(el).data("id");
+			var tgl = $(el).data("tgl");
+			var jam = $(el).data("jam");
+			var kasir = $(el).data("kasir");
+
+			if($("#infotoko").html() == ""){
+				app.dialog.alert("Profil Toko Masih Kosong, Isi Terlebih Dahulu", "Gagal");
+				return;
+			}else{
+				var namatoko, alamattoko, telptoko;
+				db.transaction(function(tx){
+					tx.executeSql("SELECT * FROM toko", [], 
+	                    function(tx, results){
+	                        jmldata = results.rows.length;
+	                        if(jmldata > 0){
+	                        	for(i=0; i<jmldata; i++){
+			                        namatoko = results.rows.item(i).nama_toko;
+			                        alamattoko = results.rows.item(i).alamat;
+			                        if(results.rows.item(i).no_telp != ""){
+			                        	telptoko = results.rows.item(i).no_telp;
+			                        }else{
+			                        	telptoko = "?????";
+			                        }
+			                    }
+			                    cetak2(namatoko, alamattoko, telptoko, idtransaksi, tgl, jam, kasir);
+	                        }else{
+	                        	app.dialog.alert("Profil Toko Masih Kosong, Isi Terlebih Dahulu", "Gagal");
+								return;
+	                        }
+	                    }
+	                );
+	            });
+			}
+		}
+
+		function cetak2(namatoko, alamattoko, telptoko, idtransaksi, tgl, jam, kasir){
+			var macprinter, isi;
+
+			if($("#infoprinter").html() == ""){
+				app.dialog.alert("Default Printer Masih Kosong, Isi Telebih Dahulu", "Gagal");
+				return;
+			}else{
+				db.transaction(function(tx){
+					tx.executeSql("SELECT * FROM pengaturan WHERE kode_pengaturan='001'", [], 
+	                    function(tx, results){
+	                        jmldata = results.rows.length;
+	                        var dtprinter;
+	                        for(i=0; i<jmldata; i++){dtprinter = results.rows.item(i).isi;}
+	                        if(dtprinter != ""){
+	                        	var hh = dtprinter.split("|");
+	                        	macprinter = hh[1];
+	                        }else{
+	                        	app.dialog.alert("Default Printer Masih Kosong, Isi Telebih Dahulu", "Gagal");
+								return;
+	                        }
+	                    }
+	                );
+	            });
+			}
+
+			isi = " {center}{h}" + namatoko + "{/h}\n" + alamattoko + ". Telp: "+ telptoko + "\n-------------------------------\n{left}No Transaksi: " + idtransaksi + "\nTanggal: " + tgl + " / " + jam + "\nKasir: " + kasir + "\n\n";
+
+			db.transaction(function(tx){
+                tx.executeSql("SELECT * FROM transaksi WHERE id_transaksi LIKE '%"+ idtransaksi +"%' ORDER BY id_transaksi", [], function(tx, results){
+                    jmldata = results.rows.length;
+                    var total = 0;
+                    for(i=0; i<jmldata; i++){
+                        var kode = results.rows.item(i).kode_barang;
+                        var nama = results.rows.item(i).nama_barang;
+                        var harga = results.rows.item(i).harga;
+                        var jumlah = results.rows.item(i).jumlah;
+                        var subtotal = harga * jumlah;
+                        total += subtotal;
+                        var no = i + 1;
+                        isi += no + '. ' + nama + '\n   Rp. ' + format_ribuan(harga) + ' x ' + format_ribuan(jumlah) + ' = Rp. ' + format_ribuan(subtotal) + '\n';
+                    }
+                    isi += '\n{h}{center}Total Belanja: Rp. ' + format_ribuan(total) + '{/h}\nTerimaksih Telah Belanja\n\n\n\n';
+                    window.DatecsPrinter.connect(macprinter, 
+        				function(){window.DatecsPrinter.printText(isi, "UTF-8");},
+        				function(){console.log(JSON.stringify(error));}
+		            );
+                });
+            });
+		}
+
+        function caritransaksi(){
+            var tgl1 = $("#transaksi_txttgl1").val();
+            var tgl2 = $("#transaksi_txttgl2").val();
+            if(tgl1 == "" || tgl2 == ""){return;}
+            db.transaction(function(tx){
+                tx.executeSql("SELECT SUBSTR(id_transaksi, 1, 13) AS id_transaksi, SUM(harga * jumlah) AS total, user, tgl_transaksi FROM transaksi WHERE tgl_transaksi BETWEEN ? AND ? GROUP BY SUBSTR(id_transaksi, 1, 13) ORDER BY tgl_transaksi", [tgl1 + " 00:00:00", tgl2 + "23:59:59"], function(tx, results){
+                    jmldata = results.rows.length;
+                    var dt = "";
+                    for(i=0; i<jmldata; i++){
+                        var id = results.rows.item(i).id_transaksi;
+                        var total = results.rows.item(i).total;
+                        var kasir = results.rows.item(i).user;
+                        var tgl = results.rows.item(i).tgl_transaksi;
+                        var no = i + 1;
+                        dt += '<div class="card card-outline" style="margin-left: 15px; margin-right: 15px; border-radius: 20px;">\
+                            <div class="card-content card-content-padding">\
+                                <div class="row" style="margin-bottom: 10px;">\
+                                    <div class="col-10">\
+                                        <font style="font-size: 17px;">'+ no +'</font>\
+                                    </div>\
+                                    <div class="col-90">\
+                                        <font style="font-size: 17px;"><b>ID Transaksi: </b>'+ id + '</font><br>\
+                                        <font style="font-size: 17px;"><b>Total: </b>Rp. '+ format_ribuan(total) +'</font><br>\
+                                        <font style="font-size: 17px;"><b>Jam: </b>'+ tgl_pendek(tgl.substring(0, 10)) + ' ' + tgl.substring(11) +'</font><br>\
+                                        <font style="font-size: 17px;"><b>Kasir: </b>'+ kasir +'</font>\
+                                    </div>\
+                                </div>\
+                                <div class="row">\
+                                    <button type="button" data-id="'+ id +'" data-kasir="'+ kasir +'" data-tgl="'+ tgl_pendek(tgl.substring(0, 10)) +'" data-jam="'+ tgl.substring(11) +'" class="col button button-fill" onclick="cetakulangnota(this)">Cetak Ulang</button>\
+                                    <button type="button" data-id="'+ id +'" data-kasir="'+ kasir +'" data-tgl="'+ tgl_pendek(tgl.substring(0, 10)) +'" data-jam="'+ tgl.substring(11) +'" class="col button button-fill color-red" onclick="detailnota(this)">Detail</button>\
+                                </div>\
+                            </div></div>';
+                    }
+                    $("#blokdatatransaksi").html(dt);
+                });
+            });
+        }
+
+        function hapustransaksi(el){
+            var idtransaksi = $(el).data("id");
+            if(idtransaksi == ""){
+                app.dialog.alert("Belum Ada Transaksi yang dipilih untuk dihapus", "Gagal");
+                return;
+            }
+            app.dialog.confirm("Anda Yakin Ingin Menghapus Data Transaksi Ini ?","Hapus",
+                function(){
+                    db.transaction(function(tx){
+                        tx.executeSql("DELETE FROM transaksi WHERE id_transaksi LIKE '%"+ idtransaksi +"%'");
+                        app.dialog.alert("Hapus Transaksi Berhasil di Lakukan","Berhasil");
+                    });
+                    cektransaksihariini();
+                    app.views.main.router.back();
+                },
+                function(){}
+            );
+        }
+
+        function detailnota(el){
+            var idtransaksi = $(el).data("id");
+            var tgl = $(el).data("tgl");
+            var jam = $(el).data("jam");
+            var kasir = $(el).data("kasir");
+            sessionStorage.setItem("transaksi_pilih", idtransaksi + "|" + tgl + "|" + jam + "|" + kasir);
+            app.views.main.router.navigate("/dtransaksi/");
+        }
+
+        function buatfile(el){
+            var jenis = $(el).data("jenis");
+            var path = "file:///storage/emulated/0";
+            var filename;
+            if(jenis == "bb"){
+                filename = "backup_brg.ceps";
+            }else{
+                filename = "backup_transaksi.ceps";
+            }
+            app.dialog.confirm("Anda Yakin Ingin Membackup Data ?","Backup",
+                function(){
+                    window.resolveLocalFileSystemURL(path, function(dir) {
+                        dir.getFile(filename, {create:true}, function(fileEntry){
+                            fileEntry.createWriter(function(fileWriter){
+                                fileWriter.onwriteend = function(e) {
+                                    app.dialog.alert("Backup Selesai","Berhasil");
+                                };
+                                fileWriter.onerror = function(e) {
+                                    app.dialog.alert(e.toString(),"Gagal");
+                                };
+                                if(jenis == "bb"){
+                                    db.transaction(function(tx){
+                                        tx.executeSql("SELECT * FROM barang", [], function(tx, results){
+                                            jmldata = results.rows.length;
+                                            if(jmldata == 0){
+                                                app.dialog.alert("Data Barang Masih Kosong, Backup di Batalkan","Gagal");
+                                                return;
+                                            }else{
+                                                var isibackup = "";
+                                                for(i=0; i<jmldata; i++){
+                                                    var kode = results.rows.item(i).kode_barang;
+                                                    var nama = results.rows.item(i).nama_barang;
+                                                    var harga = results.rows.item(i).harga;
+                                                    var barcode = results.rows.item(i).barcode;
+                                                    isibackup += kode + "|" + nama + "|" + harga + "|" + barcode + "#";
+                                                    //isibackup += '{"kode":"'+ kode +'","nama":"'+ nama +'","harga":"'+ harga +'","barcode":"'+ barcode +'"},'
+                                                }
+                                                var isibackup2 = isibackup.slice(0, -1);
+                                                var blob = new Blob([isibackup2], {type: 'text/plain'});
+                                                fileWriter.write(blob);
+                                            }
+                                        });
+                                    });
+                                }else{
+                                    db.transaction(function(tx){
+                                        tx.executeSql("SELECT * FROM transaksi", [], function(tx, results){
+                                            jmldata = results.rows.length;
+                                            if(jmldata == 0){
+                                                app.dialog.alert("Data Transaksi Masih Kosong, Backup di Batalkan","Gagal");
+                                                return;
+                                            }else{
+                                                var isibackup = "";
+                                                for(i=0; i<jmldata; i++){
+                                                    var id = results.rows.item(i).id_transaksi;
+                                                    var kode = results.rows.item(i).kode_barang;
+                                                    var nama = results.rows.item(i).nama_barang;
+                                                    var harga = results.rows.item(i).harga;
+                                                    var jumlah = results.rows.item(i).jumlah;
+                                                    var kasir = results.rows.item(i).user;
+                                                    var tgljam = results.rows.item(i).tgl_transaksi;
+                                                    isibackup += id + "|" + kode + "|" + nama + "|" + harga + "|" + jumlah + "|" + kasir + "|" + tgljam + "#";
+                                                }
+                                                var isibackup2 = isibackup.slice(0, -1);
+                                                var blob = new Blob([isibackup2], {type: 'text/plain'});
+                                                fileWriter.write(blob);
+                                            }
+                                        });
+                                    });
+                                }
+                            })
+                        });
+                    });
+                },
+                function(){}
+            );
+        }
+
+        function bacafile(el){
+            var jenis = $(el).data("jenis");
+            var path;
+            app.dialog.confirm("Anda Yakin Ingin Memrestore Data ?","Restore",
+                function(){
+                    if(jenis == "rb"){
+                        path = "file:///storage/emulated/0/backup_brg.ceps";
+                        window.resolveLocalFileSystemURL(path, success, fail);
+                        function fail(e){app.dialog.alert(e,"error");}
+                        function success(fileEntry){
+                            fileEntry.file(function(file){
+                                var reader = new FileReader();
+                                reader.onloadend = function(e){
+                                    var item = this.result;
+                                    db.transaction(function(tx){
+                                        var no = 0;
+                                        var databesar = item.split("#");
+                                        for(x=0; x<=(databesar.length-1); x++){
+                                            var datakecil = databesar[x].split("|");
+                                            var kode = datakecil[0];
+                                            var nama = datakecil[1];
+                                            var harga = datakecil[2];
+                                            var barcode = datakecil[3];
+                                            tx.executeSql("INSERT INTO barang VALUES(?,?,?,?)", [kode, nama, harga, barcode], 
+                                                function(tx){no++;}
+                                            );
+                                            if(x == (databesar.length-1)){
+                                                app.dialog.alert("Data Berhasil di Import","Berhasil");
+                                            }
+                                        }
+                                    })
+                                };
+                                reader.readAsText(file);
+                            });
+                        }
+                    }else{
+                        path = "file:///storage/emulated/0/backup_transaksi.ceps";
+                        window.resolveLocalFileSystemURL(path, success, fail);
+                        function fail(e){app.dialog.alert(e,"error");}
+                        function success(fileEntry){
+                            fileEntry.file(function(file){
+                                var reader = new FileReader();
+                                reader.onloadend = function(e){
+                                    var item = this.result;
+                                    db.transaction(function(tx){
+                                        var no = 0;
+                                        var databesar = item.split("#");
+                                        for(x=0; x<=(databesar.length-1); x++){
+                                            var datakecil = databesar[x].split("|");
+                                            var id = datakecil[0];
+                                            var kode = datakecil[1];
+                                            var nama = datakecil[2];
+                                            var harga = datakecil[3];
+                                            var jumlah = datakecil[4];
+                                            var kasir = datakecil[5];
+                                            var tgljam = datakecil[6];
+                                            tx.executeSql("INSERT INTO transaksi VALUES(?,?,?,?,?,?,?)", [id, kode, nama, harga, jumlah, kasir, tgljam], 
+                                                function(tx){no++;}
+                                            );
+                                            if(x == (databesar.length-1)){
+                                                app.dialog.alert("Data Berhasil di Import","Berhasil");
+                                                cektransaksihariini();
+                                            }
+                                        }
+                                    })
+                                };
+                                reader.readAsText(file);
+                            });
+                        }
+                    }
+                },
+                function(){}
+            );
+        }
+
+        function resetdb(el){
+            var jenis = $(el).data("jenis");
+            var sql;
+            if(jenis == "kb"){
+                sql = "DELETE FROM barang";
+            }else{
+                sql = "DELETE FROM transaksi";
+            }
+            app.dialog.confirm("Anda Yakin Ingin Meng-kosongkan Data ?","Backup",
+                function(){
+                    db.transaction(function(tx){
+                        tx.executeSql(sql, [], 
+                            function(tx){
+                                app.dialog.alert("Data Berhasil di Kosongkan","Berhasil");
+                                cektransaksihariini();
+                            }
+                        );
+                        
+                    });
+                },
+                function(){}
+            );
+        }
+        
+    </script>
+</body>
+</html>

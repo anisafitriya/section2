@@ -1,0 +1,73 @@
+<template>
+<div class="page">
+    <div class="navbar no-shadow" style="height: 55px;">
+        <div class="navbar-bg" style="background: url('img/header.png') fixed"></div>
+        <div class="navbar-inner">
+            <div class="title sliding" style="color: white">Daftar Transaksi</div>
+        </div>
+    </div>
+
+    <div class="page-content">
+        <div style="background: url('img/above.png'); margin-top: -1px; height: 211px;"><br><br><br><br><br><br><br><br><br><br></div>
+        <div class="card" style="margin-bottom: 10px; border-radius: 20px; margin-top: -217px; margin-left: 15px; margin-right: 15px">
+            <form class="list" style="margin-top: 10px;">          
+                <div class="item-content item-input">
+                    <div class="item-inner">
+                    	<div class="item-title item-label">Dari</div>
+	                    <div class="item-input-wrap">
+	                        <input type="date" id="transaksi_txttgl1" style="height: 30px; font-size: 20px;">
+	                    </div>
+                	</div>
+	                <div class="item-inner">
+	                    <div class="item-title item-label">Sampai</div>
+	                    <div class="item-input-wrap">
+	                        <input type="date" id="transaksi_txttgl2" style="height: 30px; font-size: 20px;" placeholder="ex: 2019">
+	                    </div>
+	                </div>
+                </div>
+                                
+                <div class="block" style="margin-top: 10px">
+                    <p class="row">
+                        <button type="button" class="col button button-fill color-red" @click="kembali">Kembali</button>
+                        <button type="button" class="col button button-fill color-green" id="transaksi_btncari" @click="caritransaksiglobal">Cari</button>
+                        <button type="button" class="col button button-fill" @click="kosongform">Batal</button>
+                    </p>
+                </div>
+            </form><br>
+        </div>
+        <div style="margin-top: -25px;">
+            <div class="block-title" style="color: black">Daftar Transaksi</div>
+            <div id="blokdatatransaksi" class="list"></div><br><br><br><br><br><br><br><br>
+        </div>
+    </div>
+</div>
+</template>
+
+<script>
+    return{
+        on: {
+            pageAfterIn: function(e, page){
+                caritransaksi();
+            }
+        },
+        methods: {
+            kosongform: function(){
+                $("#transaksi_txttgl1").val("");
+                $("#transaksi_txttgl2").val("");
+                $("#blokdatatransaksi").html("");
+            },
+            caritransaksiglobal: function(){
+            	var tgl1 = $("#transaksi_txttgl1").val();
+            	var tgl2 = $("#transaksi_txttgl2").val();
+            	if(tgl1 == "" || tgl2 == ""){
+	                app.dialog.alert("Range Tanggal ada yang masih kosong", "Gagal");
+	                return;
+	            }
+	            caritransaksi();
+            },
+            kembali: function(){
+                app.views.main.router.back();
+            }
+        }
+    }
+</script>
